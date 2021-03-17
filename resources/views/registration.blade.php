@@ -8,9 +8,9 @@
 <div id="login-box" class="col-md-12">
    
 {{-- <form id="login-form" class="form" action="" method="post"> --}}
-    {{Form::open(array('url'=> 'login','id'=>'login-column','id'=>'login-form'))}}
+    {{Form::open(array('url'=> 'register','id'=>'login-column','id'=>'login-form'))}}
     {{@csrf_field()}}
-<h3 class="text-center text-info">Login</h3>
+<h3 class="text-center text-info">REGISTER HERE</h3>
  {{-- if the user is already logged in we dont want them seeing the login form --}}
  @if (isset(Auth::user()->email))
  <script>window.location="/success";</script>
@@ -59,14 +59,18 @@
     {{-- <input type="text" name="password" id="password" class="form-control"> --}}
 </div>
 <div class="form-group">
-    {{Form::checkbox('remember_me','Remember me')}} <span class="text-info" id="remember_me">Remember me</span><br>
+    {{Form::label('confirm_password','Confirm Password',array('class'=>'text-info'))}}<br>
+    {{Form::password('confirm_password')}}
+    {{-- <label for="password" class="text-info">Password:</label><br> --}}
+    {{-- <input type="text" name="password" id="password" class="form-control"> --}}
+</div>
+<div class="form-group">
+    {{-- {{Form::checkbox('remember-me','Remember me')}} <span class="text-info" id="remember-me">Remember me</span><br> --}}
     {{-- <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br> --}}
     {{-- <input type="submit" name="submit" class="btn btn-info btn-md" value="submit"> --}}
-    {{Form::submit('Submit',array('class'=>'btn btn-info btn-md'))}}
+    {{Form::submit('Register',array('class'=>'btn btn-info btn-md'))}}
 </div>
-<div id="register-link" class="text-right">
-    <a href="{{url('register')}}" class="text-info" >Register here</a>
-</div>
+
 {{Form::close()}}
 {{-- </form> --}}
 </div>

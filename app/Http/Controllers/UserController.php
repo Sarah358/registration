@@ -43,9 +43,13 @@ if ($validator->fails()) {
         'email'     => Input::get('email'),
         'password'  => Input::get('password')
     );
+    //remember me 
+    $remember_me  = ( !empty( $request->remember_me ) )? TRUE : FALSE;
 }
    //attempt to do login
-   if (Auth::attempt($userdata)) {
+   if (Auth::attempt($userdata, $remember_me)) {
+
+    
        // validation successful!
         // redirect them to the secure section or whatever
         return redirect('/success');
@@ -55,10 +59,13 @@ if ($validator->fails()) {
    }else {
         // validation not successful, send back to form 
         // return an error message
-        return redirect()->back()->withErrors('error','wrong login details');
+        return back()->withErrors([
+            'message' => 'Wrong login details, please try again']);
         
+            
 
    }
+   
 
 
       }

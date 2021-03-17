@@ -26,3 +26,9 @@ Route::get('/success',[UserController::class, 'success']);
 
 // logout route
 Route::get('/logout','UserController@logout');
+
+//show registration form
+Route::get('/register','RegistrationController@show');
+
+//process registration form
+Route::post('/register','RegistrationController@register');
